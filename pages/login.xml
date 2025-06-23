@@ -1,0 +1,45 @@
+<term type="m100_xml" background="black" foreground="white">
+  <container direction="column" width="100pc" padding-top="3" padding-bottom="5">
+    <container direction="row" width="100pc">
+      <container width="20pc"></container>
+      <container width="60pc" border="dotted thin" padding="1">
+        <text align="center" font="small">Term</text>
+        <text align="center" style="bold" font="slant">Notes</text>
+        <br/>
+        <text align="center" style="normal">Login to your account</text>
+      </container>
+      <container width="20pc"></container>
+    </container>
+    
+    <container direction="row" width="100pc" padding-top="3">
+      <container width="30pc"></container>
+      <container width="40pc" border="line" padding="2">
+        <text style="bold">Username:</text>
+        <input submit="do_login" change="set_username" initial="" width="80pc" autofocus="true"/>
+        <br/>
+        <text style="bold">Password:</text>
+        <input mask="*" submit="do_login" initial="" width="80pc"/>
+        <text>[ enter ] to submit</text>
+        <br/>
+        <br/>
+        <container direction="row">
+          <container width="10">
+            <link key="1" url="/" background="blue" foreground="white">Back</link>
+          </container>
+          <container width="15">
+            <link key="2" url="/signup" background="blue" foreground="white">Sign Up</link>
+          </container>
+        </container>
+      </container>
+      <container width="30pc"></container>
+    </container>
+  </container>
+  
+  <action name="set_username">
+    var("username", value)
+  </action>
+  
+  <action name="do_login">
+    visit("/auth/login?username=" + encode(getvar("username")) + "&amp;password=" + encode(value))
+  </action>
+</term> 

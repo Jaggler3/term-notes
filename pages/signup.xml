@@ -1,0 +1,59 @@
+<term type="m100_xml" background="black" foreground="white">
+  <container direction="column" width="100pc" padding-top="3" padding-bottom="5">
+    <container direction="row" width="100pc">
+      <container width="20pc"></container>
+      <container width="60pc" border="dotted thin" padding="1">
+        <text align="center" style="bold" font="large">Create an Account</text>
+      </container>
+      <container width="20pc"></container>
+    </container>
+    
+    <container direction="row" width="100pc" padding-top="3">
+      <container width="30pc"></container>
+      <container width="40pc" border="line" padding="2">
+        <text style="bold">Username:</text>
+        <input submit="do_signup" change="set_username" initial="" width="40pc" autofocus="true"/>
+        <br/>
+        <text style="bold">Email:</text>
+        <input submit="do_signup" change="set_email" initial="" width="40pc"/>
+        <br/>
+        <text style="bold">Password:</text>
+        <input submit="do_signup" change="set_password" initial="" width="40pc"/>
+        <br/>
+        <text style="bold">Confirm Password:</text>
+        <input submit="do_signup" change="set_confirm" initial="" width="40pc"/>
+        <br/>
+        <br/>
+        <container direction="row" width="40pc">
+          <container width="19pc" padding-right="1">
+            <link key="1" url="/" background="yellow" foreground="white" width="19pc">Back</link>
+          </container>
+          <container width="19pc">
+            <link key="2" url="/login" background="blue" foreground="white" width="19pc">Login</link>
+          </container>
+        </container>
+      </container>
+      <container width="30pc"></container>
+    </container>
+  </container>
+  
+  <action name="set_username">
+    var("username", value)
+  </action>
+  
+  <action name="set_email">
+    var("email", value)
+  </action>
+  
+  <action name="set_password">
+    var("password", value)
+  </action>
+  
+  <action name="set_confirm">
+    var("confirm", value)
+  </action>
+  
+  <action name="do_signup">
+    visit("/auth/signup?username=" + encode(getvar("username")) + "&amp;email=" + encode(getvar("email")) + "&amp;password=" + encode(getvar("password")) + "&amp;confirm=" + encode(getvar("confirm")))
+  </action>
+</term> 

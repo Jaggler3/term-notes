@@ -1,0 +1,72 @@
+<term type="m100_xml" background="black" foreground="white">
+  <container direction="column" width="100pc">
+    <container direction="column" width="100pc" padding="1" border="dotted thin">
+      <container>
+        <text align="center" style="bold">Note Editor</text>
+      </container>
+      <container padding-right="1">
+        <link key="b" url="/notes?token=${token}" background="yellow" foreground="white" width="25">Back to Notes</link>
+      </container>
+    </container>
+    
+    <container direction="column" width="100pc" padding-top="2">
+      <container direction="row" width="100pc" padding="1">
+        <container width="10" padding-top="1">
+          <text style="bold">Title:</text>
+        </container>
+        <container width="60">
+          <input id="title" submit="set_title" change="store_title" initial="" width="80pc" autofocus="true"/>
+        </container>
+      </container>
+      
+      <container padding-left="1">
+        <text style="bold">Content:</text>
+      </container>
+      <input id="content" lines="10" submit="save_note" change="store_content" initial="" width="100pc" />
+    
+      <container direction="row" width="100pc" padding-top="2">
+        <container width="25pc"></container>
+        <container width="25pc">
+          <link key="s" submit="save_note" background="green" foreground="black" width="25">Save Note</link>
+        </container>
+        <container width="25pc">
+          ${deleteButton}
+        </container>
+        <container width="25pc"></container>
+      </container>
+    </container>
+  </container>
+
+  <action name="[start]">
+    debug("Starting write page"),
+    debug("Title: " + geturlparam("title")),
+    debug("Content: " + geturlparam("content")),
+    debug("Note ID: " + geturlparam("noteId")),
+    var("title", geturlparam("title")),
+    var("content", geturlparam("content")),
+    var("noteId", geturlparam("noteId")),
+    setvalue("title", geturlparam("title")),
+    setvalue("content", geturlparam("content")),
+    var("token", geturlparam("token"))
+  </action>
+  
+  <action name="store_title">
+    var("title", value)
+  </action>
+  
+  <action name="set_title">
+    var("title", value)
+  </action>
+  
+  <action name="store_content">
+    var("content", value)
+  </action>
+  
+  <action name="save_note">
+    visit("/notes/save?title=" + encode(getvar("title")) + "&amp;content=" + encode(getvar("content")) + "&amp;token=" + encode(getvar("token")) + "&amp;id=${noteId}")
+  </action>
+  
+  <action name="delete_note">
+    visit("/notes/delete?id=" + encode(getvar("noteId")) + "&amp;token=" + encode(getvar("token")))
+  </action>
+</term>

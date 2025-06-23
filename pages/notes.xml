@@ -1,0 +1,45 @@
+<term type="m100_xml" background="black" foreground="white">
+  <container direction="column" width="100pc" padding-top="3" padding-bottom="5">
+    <container direction="column" width="100pc" padding="1">
+      <container padding-bottom="1">
+        <text align="center" font="small">Term</text>
+        <text align="center" style="bold" font="slant">Notes</text>
+      </container>
+      <text align="center" style="bold">Welcome ${username}!</text>
+    </container>
+    <container padding-left="20pc">
+      <container direction="row" padding-top="1" padding-left="2">
+        <container width="14">
+          <link key="s" url="/auth/logout" background="red" foreground="white">Sign Out</link>
+        </container>
+        <container>
+          <link padding-left="1" key="n" submit="new_note" background="green" foreground="black">New Note</link>
+        </container>
+      </container>
+    </container>
+    <container direction="row" width="100pc" padding-top="1">
+      <container width="20pc">
+      </container>
+      <container width="80pc" padding="1">
+        <container width="78pc" border="dotted thin" padding="2">
+          <container direction="row">
+            <container width="70pc">
+              <text style="bold" padding-bottom="1">Your Notes</text>
+            </container>
+          </container>
+          <br/>
+          ${notesList}
+        </container>
+      </container>
+    </container>
+  </container>
+  
+  <action name="new_note">
+    visit("/notes/new?token=" + getvar("token"))
+  </action>
+  
+  <action name="[start]">
+    var("token", geturlparam("token")),
+    debug("Token extracted: " + getvar("token"))
+  </action>
+</term>
