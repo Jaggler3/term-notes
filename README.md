@@ -1,6 +1,6 @@
-# Term Notes
+# Piko Notes
 
-A simple note-taking application built for the Term browser. This project demonstrates how to create web applications that work with the Term browser's XML-based interface.
+A simple note-taking application built for the Piko browser. This project demonstrates how to create web applications that work with the Piko browser's XML-based interface.
 
 ## Features
 
@@ -33,7 +33,7 @@ The server will start on `http://localhost:3000`
 
 ## Usage
 
-1. Open the Term browser
+1. Open the Piko browser
 2. Navigate to `http://localhost:3000`
 3. Sign up for a new account or log in
 4. Create and manage your notes
@@ -43,7 +43,7 @@ The server will start on `http://localhost:3000`
 - `main.ts` - Main server file with all routes
 - `lib/` - Database connection and utilities
 - `core/` - Business logic (auth, notes)
-- `pages/` - XML templates for Term browser
+- `pages/` - XML templates for Piko browser
 - `components/` - Reusable XML components
 
 ## Database Schema
@@ -54,7 +54,7 @@ The application creates two tables:
 
 ## Limitations
 
-This project explores the limitations of building web applications for the Term browser. Some challenges include:
+This project explores the limitations of building web applications for the Piko browser. Some challenges include:
 
 - Limited form handling (single input per action)
 - No client-side state management
@@ -67,5 +67,5 @@ This project explores the limitations of building web applications for the Term 
 To test the application:
 
 1. Start the server with `bun run main.ts`
-2. Use the Term browser to navigate to `http://localhost:3000`
+2. Use the Piko browser to navigate to `http://localhost:3000`
 3. Test the authentication flow and note creation 

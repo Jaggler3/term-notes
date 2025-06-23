@@ -11,7 +11,7 @@ const server = Bun.serve({
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url)
     
-    // Set CORS headers for Term browser
+    // Set CORS headers for Piko browser
     const headers = {
       'Content-Type': 'text/xml',
       'Access-Control-Allow-Origin': '*',
@@ -59,7 +59,7 @@ const server = Bun.serve({
         
         const token = generateToken(user)
         const redirectUrl = `/notes?token=${token}`
-        return new Response(`<term type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></term>`, { headers })
+        return new Response(`<piko type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></piko>`, { headers })
       }
       
       if (url.pathname === '/auth/signup') {
@@ -80,7 +80,7 @@ const server = Bun.serve({
           const user = await createUser(username, email, password)
           const token = generateToken(user)
           const redirectUrl = `/notes?token=${token}`
-          return new Response(`<term type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></term>`, { headers })
+          return new Response(`<piko type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></piko>`, { headers })
         } catch (error: any) {
           if (error.message.includes('unique constraint')) {
             return new Response('Username or email already exists', { status: 409, headers })
@@ -90,18 +90,18 @@ const server = Bun.serve({
       }
       
       if (url.pathname === '/auth/logout') {
-        return new Response(`<term type="m100_xml"><action name="[redirect]">visit("/")</action></term>`, { headers })
+        return new Response(`<piko type="m100_xml"><action name="[redirect]">visit("/")</action></piko>`, { headers })
       }
       
       // Notes routes (require authentication)
       const token = url.searchParams.get('token')
       if (!token) {
-        return new Response('<term type="m100_xml"><text>Authentication required</text></term>', { status: 401, headers })
+        return new Response('<piko type="m100_xml"><text>Authentication required</text></piko>', { status: 401, headers })
       }
       
       const payload = verifyToken(token)
       if (!payload) {
-        return new Response('<term type="m100_xml"><text>Invalid token</text></term>', { status: 401, headers })
+        return new Response('<piko type="m100_xml"><text>Invalid token</text></piko>', { status: 401, headers })
       }
       
       // Notes list page
@@ -133,16 +133,16 @@ const server = Bun.serve({
         const noteId = url.searchParams.get('id')
         
         if (!noteId) {
-          return new Response('<term type="m100_xml"><text>Missing note ID</text></term>', { status: 400, headers })
+          return new Response('<piko type="m100_xml"><text>Missing note ID</text></piko>', { status: 400, headers })
         }
         
         const success = await deleteNote(noteId, payload.userId)
         if (!success) {
-          return new Response('<term type="m100_xml"><text>Error deleting note or note not found</text></term>', { status: 404, headers })
+          return new Response('<piko type="m100_xml"><text>Error deleting note or note not found</text></piko>', { status: 404, headers })
         }
         
         const redirectUrl = `/notes?token=${token}`
-        return new Response(`<term type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></term>`, { headers })
+        return new Response(`<piko type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></piko>`, { headers })
       }
 
       // Edit note page
@@ -151,7 +151,7 @@ const server = Bun.serve({
         const note = await getNote(noteId, payload.userId)
         
         if (!note) {
-          return new Response('<term type="m100_xml"><text>Note not found</text></term>', { status: 404, headers })
+          return new Response('<piko type="m100_xml"><text>Note not found</text></piko>', { status: 404, headers })
         }
         
         const page = renderTemplate('./pages/write.xml', {
@@ -172,7 +172,7 @@ const server = Bun.serve({
         const noteId = url.searchParams.get('id')
         
         if (!title || !content) {
-          return new Response('<term type="m100_xml"><text>Missing title or content</text></term>', { status: 400, headers })
+          return new Response('<piko type="m100_xml"><text>Missing title or content</text></piko>', { status: 400, headers })
         }
         
         let note
@@ -183,20 +183,20 @@ const server = Bun.serve({
         }
         
         if (!note) {
-          return new Response('<term type="m100_xml"><text>Error saving note</text></term>', { status: 500, headers })
+          return new Response('<piko type="m100_xml"><text>Error saving note</text></piko>', { status: 500, headers })
         }
         
         const redirectUrl = `/notes?token=${token}`
-        return new Response(`<term type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></term>`, { headers })
+        return new Response(`<piko type="m100_xml"><action name="[redirect]">visit("${redirectUrl}")</action></piko>`, { headers })
       }
       
       return new Response('Not Found', { status: 404, headers })
       
     } catch (error) {
       console.error('Server error:', error)
-      return new Response('<term type="m100_xml"><text>Internal Server Error</text></term>', { status: 500, headers })
+      return new Response('<piko type="m100_xml"><text>Internal Server Error</text></piko>', { status: 500, headers })
     }
   }
 })
 
-console.log(`Term Notes server listening at http://localhost:${server.port}`) 
+console.log(`Piko Notes server listening at http://localhost:${server.port}`) 

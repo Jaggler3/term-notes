@@ -1,9 +1,9 @@
-<term type="m100_xml" background="black" foreground="white">
+<piko type="m100_xml" background="black" foreground="white">
   <container direction="column" width="100pc" padding-top="3" padding-bottom="5">
     <container direction="row" width="100pc">
       <container width="20pc"></container>
       <container width="60pc" border="dotted thin" padding="1">
-        <text align="center" font="small">Term</text>
+        <text align="center" font="small">Piko</text>
         <text align="center" style="bold" font="slant">Notes</text>
         <br/>
         <text align="center" style="normal">Login to your account</text>
@@ -42,4 +42,4 @@
   <action name="do_login">
     visit("/auth/login?username=" + encode(getvar("username")) + "&amp;password=" + encode(value))
   </action>
-</term> 
+</piko> 

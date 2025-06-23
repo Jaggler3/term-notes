@@ -1,4 +1,4 @@
-<term type="m100_xml" background="black" foreground="white">
+<piko type="m100_xml" background="black" foreground="white">
   <container direction="column" width="100pc" padding-top="3" padding-bottom="5">
     <container direction="row" width="100pc">
       <container width="20pc"></container>
@@ -56,4 +56,4 @@
   <action name="do_signup">
     visit("/auth/signup?username=" + encode(getvar("username")) + "&amp;email=" + encode(getvar("email")) + "&amp;password=" + encode(getvar("password")) + "&amp;confirm=" + encode(getvar("confirm")))
   </action>
-</term> 
+</piko> 

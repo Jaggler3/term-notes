@@ -1,4 +1,4 @@
-<term type="m100_xml" background="black" foreground="white">
+<piko type="m100_xml" background="black" foreground="white">
   <container direction="column" width="100pc">
     <container direction="column" width="100pc" padding="1" border="dotted thin">
       <container>
@@ -69,4 +69,4 @@
   <action name="delete_note">
     visit("/notes/delete?id=" + encode(getvar("noteId")) + "&amp;token=" + encode(getvar("token")))
   </action>
-</term>
+</piko>
