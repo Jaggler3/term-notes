@@ -3,7 +3,10 @@
     <container direction="row" width="100pc">
       <container width="20pc"></container>
       <container width="60pc" border="dotted thin" padding="1">
-        <text align="center" style="bold" font="large">Create an Account</text>
+        <text align="center" font="small">Piko</text>
+        <text align="center" style="bold" font="slant">Notes</text>
+        <br/>
+        <text align="center" style="normal">Sign up for an account</text>
       </container>
       <container width="20pc"></container>
     </container>
@@ -25,11 +28,11 @@
         <br/>
         <br/>
         <container direction="row" width="40pc">
-          <container width="19pc" padding-right="1">
-            <link key="1" url="/" background="yellow" foreground="white" width="19pc">Back</link>
+          <container width="10" padding-right="1">
+            <link key="1" url="/" background="yellow" foreground="white">Back</link>
           </container>
-          <container width="19pc">
-            <link key="2" url="/login" background="blue" foreground="white" width="19pc">Login</link>
+          <container width="10">
+            <link key="2" url="/login" background="blue" foreground="white">Login</link>
           </container>
         </container>
       </container>
