@@ -28,10 +28,10 @@
         <br/>
         <br/>
         <container direction="row" width="40pc">
-          <container width="10" padding-right="1">
+          <container width="15" padding-right="1">
             <link key="1" url="/" background="yellow" foreground="white">Back</link>
           </container>
-          <container width="10">
+          <container width="15">
             <link key="2" url="/login" background="blue" foreground="white">Sign Up</link>
           </container>
         </container>
